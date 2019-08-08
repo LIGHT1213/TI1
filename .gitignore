@@ -2,3 +2,5 @@
 /Drivers
 *.o
 *.d
+*.o
+*.axf
