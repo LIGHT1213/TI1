@@ -1,2 +1,4 @@
 
 /Drivers
+*.o
+*.d

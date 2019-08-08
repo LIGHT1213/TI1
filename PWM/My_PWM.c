@@ -18,6 +18,6 @@ void ChannelOne_SetPositon(float Position)
 	
 	temp += Position *(float)0.2;
 	
-	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_1,(uint16_t)temp);
+	__HAL_TIM_SET_COMPARE(&htim4,TIM_CHANNEL_2,(uint16_t)temp);
 	
 }
