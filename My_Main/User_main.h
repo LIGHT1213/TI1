@@ -8,6 +8,9 @@
 #include "KeyPad.h"
 #include "gui.h"
 #include "spi.h"
+#include "GaussGun.h"
+#include "My_String.h"
+#include "MricroStepDriver.h"
 void Usermain(void);
 
 #endif

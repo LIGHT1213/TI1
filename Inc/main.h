@@ -72,6 +72,10 @@ void Error_Handler(void);
 #define STLK_TX_GPIO_Port GPIOD
 #define LED_Pin GPIO_PIN_12
 #define LED_GPIO_Port GPIOD
+#define DIR__Pin GPIO_PIN_6
+#define DIR__GPIO_Port GPIOG
+#define EN__Pin GPIO_PIN_7
+#define EN__GPIO_Port GPIOG
 #define CS_SET_Pin GPIO_PIN_8
 #define CS_SET_GPIO_Port GPIOC
 #define DC_SET_Pin GPIO_PIN_9
@@ -86,8 +90,8 @@ void Error_Handler(void);
 #define KEYy3_GPIO_Port GPIOD
 #define KEYy2_Pin GPIO_PIN_1
 #define KEYy2_GPIO_Port GPIOD
-#define KEYy3D2_Pin GPIO_PIN_2
-#define KEYy3D2_GPIO_Port GPIOD
+#define KEYy1_Pin GPIO_PIN_2
+#define KEYy1_GPIO_Port GPIOD
 #define KEYy0_Pin GPIO_PIN_3
 #define KEYy0_GPIO_Port GPIOD
 #define KEYx0_Pin GPIO_PIN_4
@@ -98,6 +102,8 @@ void Error_Handler(void);
 #define KEYx2_GPIO_Port GPIOD
 #define KEYx3_Pin GPIO_PIN_7
 #define KEYx3_GPIO_Port GPIOD
+#define FIRE_Pin GPIO_PIN_11
+#define FIRE_GPIO_Port GPIOG
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

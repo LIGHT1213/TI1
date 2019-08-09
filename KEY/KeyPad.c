@@ -1,7 +1,8 @@
 #include "keypad.h"
+// = 100; 
 uint16_t Key_scan(void)
 {
-	uint16_t Key_val = 0;          
+	uint16_t Key_val = 100;          
 	                                
 	uint16_t temp;
     
@@ -32,7 +33,7 @@ uint16_t Key_scan(void)
 				case 0x77 : Key_val = 4;
 				break;
 
-				default  : Key_val = 0; break;
+				default  : Key_val =100; break;
 
 			}
 		}
@@ -64,7 +65,7 @@ uint16_t Key_scan(void)
 				case 0x7B : Key_val = 8;
 				break;
 
-				default  : Key_val = 0; break;
+				default  : Key_val = 100; break;
 
 			}
 		}
@@ -96,7 +97,7 @@ uint16_t Key_scan(void)
 				case 0x7D : Key_val = 12;
 				break;
 
-				default   : Key_val = 0; break;
+				default   : Key_val = 100; break;
 
 			}
 		}
@@ -126,7 +127,7 @@ uint16_t Key_scan(void)
 				case 0X7E : Key_val = 16;
 				break;
 
-				default  : Key_val = 0; break;
+				default  : Key_val = 100; break;
 
 			}
 		}

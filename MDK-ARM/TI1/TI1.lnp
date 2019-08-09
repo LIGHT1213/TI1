@@ -37,6 +37,10 @@
 "ti1\user_main.o"
 "ti1\keypad.o"
 "ti1\mricrostepdriver.o"
+"ti1\timer.o"
+"ti1\gaussgun.o"
+"ti1\my_string.o"
+"ti1\my_pid.o"
 --library_type=microlib --strict --scatter "TI1\TI1.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

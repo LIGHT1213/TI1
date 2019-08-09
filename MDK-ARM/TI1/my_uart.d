@@ -40,5 +40,8 @@ ti1/my_uart.o: ..\UART\My_Uart.c ..\UART\My_Uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\Inc\usart.h \
-  ..\Inc\main.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\PID\My_PID.h \
+  ..\PWM\My_PWM.h ..\Inc\tim.h ..\Inc\main.h ..\UART\My_Uart.h \
+  ..\MricroStepDriver\MricroStepDriver.h ..\MricroStepDriver\sys.h \
+  ..\MricroStepDriver\Timer.h ..\Inc\gpio.h \
+  ..\MricroStepDriver\MricroStepDriver.h ..\Inc\usart.h

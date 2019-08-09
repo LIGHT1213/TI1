@@ -43,4 +43,8 @@ ti1/main.o: ..\Src\main.c ..\Inc\main.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h ..\My_Main\User_main.h \
   ..\PWM\My_PWM.h ..\UART\My_Uart.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\KEY\KeyPad.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\PID\My_PID.h \
+  ..\MricroStepDriver\MricroStepDriver.h ..\MricroStepDriver\sys.h \
+  ..\MricroStepDriver\Timer.h ..\MricroStepDriver\MricroStepDriver.h \
+  ..\KEY\KeyPad.h ..\FIRE\GaussGun.h ..\LCDSHOW\My_String.h \
+  ..\LCD\font.h

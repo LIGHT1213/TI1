@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>7</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H743xx,USE_HAL_DRIVER,STM32H743xx,ARM_MATH_CM7</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc; ../Drivers/STM32H7xx_HAL_Driver/Inc; ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32H7xx/Include; ../Drivers/CMSIS/Include; ..\LCD; ..\Drivers\CMSIS\DSP\Include; ..\My_Main; ..\PWM; ..\UART; ..\KEY; ..\MricroStepDriver</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32H7xx_HAL_Driver/Inc; ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32H7xx/Include; ../Drivers/CMSIS/Include; ..\LCD; ..\Drivers\CMSIS\DSP\Include; ..\My_Main; ..\PWM; ..\UART; ..\KEY; ..\MricroStepDriver; ..\FIRE; ..\LCDSHOW; ..\PID</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -657,6 +657,61 @@
               <FileName>sys.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\MricroStepDriver\sys.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MricroStepDriver\Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MricroStepDriver\Timer.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Fire</GroupName>
+          <Files>
+            <File>
+              <FileName>GaussGun.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FIRE\GaussGun.c</FilePath>
+            </File>
+            <File>
+              <FileName>GaussGun.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\FIRE\GaussGun.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LCDSHOW</GroupName>
+          <Files>
+            <File>
+              <FileName>My_String.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LCDSHOW\My_String.c</FilePath>
+            </File>
+            <File>
+              <FileName>My_String.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LCDSHOW\My_String.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PID</GroupName>
+          <Files>
+            <File>
+              <FileName>My_PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\PID\My_PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>My_PID.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\PID\My_PID.h</FilePath>
             </File>
           </Files>
         </Group>

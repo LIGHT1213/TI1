@@ -7,6 +7,13 @@ uint8_t _GetErrorRXBuffer[7] = {0};
 uint8_t _GetCommandRXBuffer[1] = {0};
 int16_t Coordinate1_One = 0 , Coordinate1_Two = 0;
 static uint8_t CommandUpdateStatus = 0;
+static uint8_t _GetDistantRxBuffer[12] = {0};
+uint8_t _GetDistantRxVal = 0;
+static uint8_t _GetDistantStatus = 0;
+ float   _GetDistantResults = 0.0; 
+static uint8_t _GetDistantUpdateStatus = 0;
+//static int16_t Coordinate1_One = 0 , Coordinate1_Two = 0;
+//static uint8_t CommandUpdateStatus = 0;
 
 uint8_t _DebugCommand = 0;
 
@@ -50,6 +57,13 @@ void User_DebugUart_Init(void)
 	HAL_UART_Receive_IT(&huart3,_GetCommandRXBuffer,1);
 }
 
+void User_DistantUart_Init(void)
+{
+	//等待激光传感器上电发送 "OK\r\n"
+	HAL_Delay(1000);
+	HAL_UART_Transmit(&huart7,(uint8_t*)"iFACM\r\n",sizeof("iFACM\r\n"),100);
+	HAL_UART_Receive_IT(&huart7,&_GetDistantRxVal,1);
+}
 
 /* 误差获取串口 UART1 HC12 OPENMV 串口 回调函数(中断处理函数) */
 void _GetErrorUartCallBack(void)
@@ -98,17 +112,17 @@ void _GetErrorUartCallBack(void)
 		//指示收到新的指令
 		CommandUpdateStatus = 1;
 		//收到新指令立即执行PID
-//		if(Get_CoordinateXResult()!=999)
-//		PIDOut();
-//		else
-//		{
-//			
-//		}
-		//turn();
+		if(Get_CoordinateXResult()!=999&&stop==0)
+		{
+		PIDOut();
+		}		//turn();
 	}
 	
 }
-
+float Get_CoordinateDistant(void)
+{
+	return _GetDistantResults;
+}
 
 /* 命令获取串口的中断服务函数 */
 void _GetCommandUartCallBack(void)
@@ -117,7 +131,50 @@ void _GetCommandUartCallBack(void)
 	HAL_UART_Receive_IT(&huart3,_GetCommandRXBuffer,1);
 }
 
-
+void _GetDistantUartCallBack(void)
+{
+	static uint8_t RxCount = 0;
+	uint8_t DecodeTable[6] = {0};
+	
+	_GetDistantRxBuffer[RxCount] = _GetDistantRxVal;
+	RxCount ++;
+	/* 一帧结束 */
+	if(_GetDistantRxVal == '\n')
+	{
+		/* 第一个字符是E就是错误 */
+		if(_GetDistantRxBuffer[0] == 'E')
+		{
+			//错误处理部分
+			memset(_GetDistantRxBuffer,0x00,12);
+			RxCount = 0;
+			//出现错误将此位拉高
+			_GetDistantStatus = 1;
+			_GetDistantResults = 10.0;
+			HAL_UART_Receive_IT(&huart7,&_GetDistantRxVal,1);
+			return;
+		}
+		else
+		{
+			//字符串分割
+			memset(_GetDistantRxBuffer,0x00,2);
+			memset(&_GetDistantRxBuffer[7],0x00,3);
+			//内存拷贝
+			memcpy(DecodeTable,&_GetDistantRxBuffer[2],5);
+			//字符串转浮点数
+			_GetDistantResults = (float)atof((const char*)DecodeTable);
+			//重置计数 重新开启中断
+			memset(_GetDistantRxBuffer,0x00,12);
+			RxCount = 0;
+			_GetDistantUpdateStatus = 1;
+			HAL_UART_Receive_IT(&huart7,&_GetDistantRxVal,1);
+			return;
+		}
+		
+	}
+	
+	HAL_UART_Receive_IT(&huart7,&_GetDistantRxVal,1);
+	
+}
 /* 命令查询函数 返回当前调试串口的指令 */
 uint8_t Get_DebugCommand(void)
 {
@@ -127,16 +184,20 @@ uint8_t Get_DebugCommand(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	
-	/* 串口3中断部分 */
 	if(huart->Instance == USART3)
 	{
 		_GetCommandUartCallBack();
+		
 	}
 	
-	/* 串口1中断部分 */
 	if(huart->Instance == UART5)
 	{
 		_GetErrorUartCallBack();
+		
+	}
+		if(huart->Instance == UART7)
+	{
+		_GetDistantUartCallBack();
 	}
 	
 	
@@ -154,7 +215,9 @@ int fputc(int ch,FILE *f)
 {
     uint8_t temp[1]={ch};
     
-HAL_UART_Transmit(&huart6,temp,1,10);		//UartHandle是串口的句柄
+HAL_UART_Transmit(&huart3,temp,1,10);
+//HAL_UART_Transmit(&huart5,temp,1,10);
+//HAL_UART_Transmit(&huart7,temp,1,10);		//UartHandle是串口的句柄
 		return ch;
 }
 
@@ -162,7 +225,9 @@ HAL_UART_Transmit(&huart6,temp,1,10);		//UartHandle是串口的句柄
 PUTCHAR_PROTOTYPE
 {
 
-	HAL_UART_Transmit(&huart6,(uint8_t*)&ch,1,10);
+	HAL_UART_Transmit(&huart3,(uint8_t*)&ch,1,10);
+//	HAL_UART_Transmit(&huart5,(uint8_t*)&ch,1,10);
+//	HAL_UART_Transmit(&huart7,(uint8_t*)&ch,1,10);
 	return ch;
 }
 

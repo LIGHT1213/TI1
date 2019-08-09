@@ -5,13 +5,12 @@
 #include "stm32h7xx_hal.h"
 #include "stdio.h"
 #include "string.h"
-#include "stdlib.h"
-
+#include <stdlib.h>
+#include "My_PID.h"
 //用户头文件
 #include "usart.h"
 
-
-//公有函数
+extern int stop;
 
 /* 误差获取串口 串口1 HC12串口 初始化 */
 void User_GetErrorUart_Init(void);
@@ -19,11 +18,17 @@ void User_GetErrorUart_Init(void);
 /* 调试信息输出串口 DAP调试器虚拟串口 串口3 PB10 PB11 */
 void User_DebugUart_Init(void);
 
+/* 距离信息获取串口初始化 接激光传感器 */
+void User_DistantUart_Init(void);
+
 /* 误差获取串口的中断服务函数 */
 void _GetErrorUartCallBack(void);
 
 /* 命令获取串口的中断服务函数 */
 void _GetCommandUartCallBack(void);
+
+/* 距离信息获取串口的中断服务函数 */
+void _GetDistantUartCallBack(void);
 
 /* 查询命令是否更新函数 */
 uint8_t Is_CommandUpdate(void);
@@ -39,5 +44,7 @@ int16_t Get_CoordinateYResult(void);
 
 /* 命令查询函数 返回当前调试串口的指令 */
 uint8_t Get_DebugCommand(void);
+
+float Get_CoordinateDistant(void);
 
 #endif
